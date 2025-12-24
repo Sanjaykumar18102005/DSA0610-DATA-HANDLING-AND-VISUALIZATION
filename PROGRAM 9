@@ -1,0 +1,92 @@
+Skip to content
+Navigation Menu
+Platform
+Solutions
+Resources
+Open Source
+Enterprise
+Pricing
+
+Search or jump to...
+Sign in
+Sign up
+DINESHKS2004
+/
+K.S.DINESH--192324185---Data-handling-
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Files
+Go to file
+README.md
+data handling lab for github.docx
+data handling lab printout output.docx
+pro 1
+pro 10
+pro 11
+pro 12
+pro 13
+pro 14
+pro 15
+pro 16
+pro 17
+pro 18
+pro 19
+pro 2
+pro 20
+pro 3
+pro 4
+pro 5
+pro 6
+pro 7
+pro 8
+pro 9
+K.S.DINESH--192324185---Data-handling-
+/pro 9
+DINESHKS2004
+DINESHKS2004
+Create pro 9
+5f6646f
+ · 
+yesterday
+
+Code
+
+Blame
+31 lines (28 loc) · 698 Bytes
+#day 1 pro 9
+# Load required libraries
+library(ggplot2)
+library(tidyr)  # part of tidyverse
+
+# Create data frame
+temperature_data <- data.frame(
+  Month = c("Jan", "Feb", "Mar", "Apr", "May"),
+  City_A = c(5, 6, 7, 8, 9),
+  City_B = c(10, 11, 12, 13, 14),
+  City_C = c(15, 16, 17, 18, 19)
+)
+
+# Reshape data using pivot_longer
+melted_data <- pivot_longer(
+  temperature_data,
+  cols = -Month,
+  names_to = "City",
+  values_to = "Temperature"
+)
+
+# Plot heatmap
+ggplot(melted_data, aes(x = Month, y = City, fill = Temperature)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "black") +
+  labs(
+    title = "Monthly Temperatures",
+    x = "Month",
+    y = "City"
+  ) +
+  theme_minimal()
