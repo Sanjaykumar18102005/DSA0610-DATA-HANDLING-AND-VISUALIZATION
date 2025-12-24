@@ -1,0 +1,26 @@
+#day 2 pro 14
+library(ggplot2)
+
+# Create a data frame
+sales_campaign_data <- data.frame(
+  Product = c("A", "B", "C"),
+  Before = c(200, 300, 400),
+  After = c(250, 350, 450)
+)
+
+# Convert to long format for plotting points
+library(tidyr)
+long_data <- pivot_longer(sales_campaign_data, cols = c(Before, After),
+                          names_to = "Time", values_to = "Sales")
+
+# Plot dumbbell-like plot
+ggplot(long_data, aes(x = Sales, y = Product, color = Time)) +
+  geom_line(aes(group = Product), color = "gray", size = 2) +  # line connecting before/after
+  geom_point(size = 4) +
+  labs(
+    title = "Sales Before and After Campaign",
+    x = "Sales",
+    y = "Product"
+  ) +
+  theme_minimal() +
+  scale_color_manual(values = c("Before" = "blue", "After" = "red"))
