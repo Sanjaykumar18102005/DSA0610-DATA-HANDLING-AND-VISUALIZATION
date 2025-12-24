@@ -1,0 +1,20 @@
+#day2 pro 20
+# Load library
+library(ggplot2)
+
+# Sample data
+data <- data.frame(
+  Date = as.Date(c("2023-01-01","2023-01-02","2023-01-03","2023-01-04","2023-01-05")),
+  Count = c(10, 12, 15, 8, 20)
+)
+
+# Add weekday and week number
+data$Weekday <- weekdays(data$Date)
+data$Week <- as.numeric(format(data$Date, "%U")) + 1  # Week of year
+
+# Plot simple calendar heatmap
+ggplot(data, aes(x = Weekday, y = -Week, fill = Count)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "white", high = "steelblue") +
+  labs(title = "Daily Activity Heatmap", x = "Weekday", y = "Week") +
+  theme_minimal()
